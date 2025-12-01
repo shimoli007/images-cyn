@@ -9,6 +9,8 @@ const locations = {
   kenya: { lat: -1.2921, lng: 36.8219, label: 'Kenya', color: '#eca52e' },
   uganda: { lat: 0.3476, lng: 32.5825, label: 'Uganda', color: '#eca52e' },
   zambia: { lat: -15.3875, lng: 28.3228, label: 'Zambia', color: '#eca52e' },
+  brazil: { lat: -14.235, lng: -51.9253, label: 'Brazil', color: '#eca52e' },
+  philippines: { lat: 12.8797, lng: 121.774, label: 'Philippines', color: '#eca52e' },
 };
 
 // Convert lat/lng to 3D coordinates on sphere
@@ -208,6 +210,8 @@ function ConnectionParticles() {
       { start: locations.uk, end: locations.kenya },
       { start: locations.uk, end: locations.uganda },
       { start: locations.uk, end: locations.zambia },
+      { start: locations.uk, end: locations.brazil },
+      { start: locations.uk, end: locations.philippines },
     ];
 
     connections.forEach((conn) => {
@@ -266,6 +270,8 @@ function GlobeScene() {
       <LocationMarker {...locations.kenya} />
       <LocationMarker {...locations.uganda} />
       <LocationMarker {...locations.zambia} />
+      <LocationMarker {...locations.brazil} />
+      <LocationMarker {...locations.philippines} />
 
       {/* Connection Lines */}
       <ConnectionArc
@@ -279,6 +285,14 @@ function GlobeScene() {
       <ConnectionArc
         start={{ lat: locations.uk.lat, lng: locations.uk.lng }}
         end={{ lat: locations.zambia.lat, lng: locations.zambia.lng }}
+      />
+      <ConnectionArc
+        start={{ lat: locations.uk.lat, lng: locations.uk.lng }}
+        end={{ lat: locations.brazil.lat, lng: locations.brazil.lng }}
+      />
+      <ConnectionArc
+        start={{ lat: locations.uk.lat, lng: locations.uk.lng }}
+        end={{ lat: locations.philippines.lat, lng: locations.philippines.lng }}
       />
 
       {/* Particles */}
