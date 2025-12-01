@@ -1,5 +1,13 @@
 import { motion } from 'framer-motion';
 import { Building2, TrendingUp, Users } from 'lucide-react';
+import AnimatedCounter from '@/components/effects/AnimatedCounter';
+
+const stats = [
+  { value: 100, suffix: '+', label: 'SMEs Supported' },
+  { value: 4, suffix: '', label: 'Countries' },
+  { value: 15, suffix: '-20hrs', label: 'Time Saved Weekly' },
+  { value: 5, suffix: '%', prefix: 'Top ', label: 'Global Talent' },
+];
 
 const partners = [
   {
@@ -44,6 +52,26 @@ const TrustedBySection = () => {
             From government institutions to innovative businesses, Cynea AI is powering digital
             transformation across UK-Emerging Markets corridors.
           </p>
+        </motion.div>
+
+        {/* Stats Grid */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16"
+        >
+          {stats.map((stat, index) => (
+            <div key={stat.label} className="text-center">
+              <div className="text-4xl md:text-5xl font-bold text-gold mb-2">
+                {stat.prefix && <span>{stat.prefix}</span>}
+                <AnimatedCounter end={stat.value} duration={2 + index * 0.3} />
+                <span>{stat.suffix}</span>
+              </div>
+              <p className="text-gray-300 text-sm">{stat.label}</p>
+            </div>
+          ))}
         </motion.div>
 
         {/* Partner Cards */}

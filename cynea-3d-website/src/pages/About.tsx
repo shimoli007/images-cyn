@@ -14,6 +14,7 @@ import {
   ExternalLink,
 } from 'lucide-react';
 import CTASection from '@/components/sections/CTASection';
+import Floating3DShapes from '@/components/effects/Floating3DShapes';
 
 const coreValues = [
   {
@@ -89,8 +90,11 @@ const About = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-slate-50 to-blue-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="pt-32 pb-16 bg-gradient-to-br from-slate-50 to-blue-50 relative overflow-hidden">
+        {/* Floating 3D Background */}
+        <Floating3DShapes className="opacity-30" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

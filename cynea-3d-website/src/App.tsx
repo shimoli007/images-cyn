@@ -1,5 +1,6 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import Layout from '@/components/layout/Layout';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 
@@ -25,37 +26,63 @@ const GovernmentTraining = lazy(() => import('@/pages/training/GovernmentTrainin
 const TalentHub = lazy(() => import('@/pages/impact/TalentHub'));
 const AIForGood = lazy(() => import('@/pages/impact/AIForGood'));
 
+// Page transition variants
+const pageVariants = {
+  initial: { opacity: 0, y: 20 },
+  enter: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] as const } },
+  exit: { opacity: 0, y: -20, transition: { duration: 0.3 } },
+};
+
+// Animated Routes component to handle page transitions
+function AnimatedRoutes() {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={location.pathname}
+        initial="initial"
+        animate="enter"
+        exit="exit"
+        variants={pageVariants}
+      >
+        <Routes location={location}>
+          {/* Main pages */}
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/use-cases" element={<UseCases />} />
+          <Route path="/resources" element={<Resources />} />
+
+          {/* Products pages */}
+          <Route path="/products/ai-automation" element={<AIAutomation />} />
+          <Route path="/products/blockchain-compliance" element={<BlockchainCompliance />} />
+          <Route path="/products/digital-finance" element={<DigitalFinance />} />
+          <Route path="/products/data-analytics" element={<DataAnalytics />} />
+
+          {/* Training pages */}
+          <Route path="/training/career-growth" element={<CareerGrowth />} />
+          <Route path="/training/corporate" element={<CorporateTraining />} />
+          <Route path="/training/government" element={<GovernmentTraining />} />
+
+          {/* Impact pages */}
+          <Route path="/impact/talent-hub" element={<TalentHub />} />
+          <Route path="/impact/ai-for-good" element={<AIForGood />} />
+
+          {/* 404 fallback - redirect to home */}
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
 function App() {
   return (
     <Router>
       <Layout>
         <Suspense fallback={<LoadingSpinner />}>
-          <Routes>
-            {/* Main pages */}
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/use-cases" element={<UseCases />} />
-            <Route path="/resources" element={<Resources />} />
-
-            {/* Products pages */}
-            <Route path="/products/ai-automation" element={<AIAutomation />} />
-            <Route path="/products/blockchain-compliance" element={<BlockchainCompliance />} />
-            <Route path="/products/digital-finance" element={<DigitalFinance />} />
-            <Route path="/products/data-analytics" element={<DataAnalytics />} />
-
-            {/* Training pages */}
-            <Route path="/training/career-growth" element={<CareerGrowth />} />
-            <Route path="/training/corporate" element={<CorporateTraining />} />
-            <Route path="/training/government" element={<GovernmentTraining />} />
-
-            {/* Impact pages */}
-            <Route path="/impact/talent-hub" element={<TalentHub />} />
-            <Route path="/impact/ai-for-good" element={<AIForGood />} />
-
-            {/* 404 fallback - redirect to home */}
-            <Route path="*" element={<Home />} />
-          </Routes>
+          <AnimatedRoutes />
         </Suspense>
       </Layout>
     </Router>

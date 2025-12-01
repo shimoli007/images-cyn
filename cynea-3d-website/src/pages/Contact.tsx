@@ -4,6 +4,8 @@ import { Mail, Phone, MapPin, Clock, Send, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { interestOptions, contactInfo } from '@/data/navigation';
 import Button from '@/components/ui/Button';
+import FloatingParticles from '@/components/effects/FloatingParticles';
+import GlowingCard from '@/components/effects/GlowingCard';
 
 const quickLinks = [
   {
@@ -81,8 +83,11 @@ const Contact = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-navy to-navy-light text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="pt-32 pb-16 bg-gradient-to-br from-navy to-navy-light text-white relative overflow-hidden">
+        {/* Floating Particles Background */}
+        <FloatingParticles className="opacity-40" particleCount={80} color="#eca52e" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -380,18 +385,20 @@ const Contact = () => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
               >
-                <Link
-                  to={link.href}
-                  className="block h-full p-6 bg-white rounded-xl border border-gray-100 hover:shadow-lg hover:border-gold/30 transition-all group"
-                >
-                  <h3 className="font-bold text-navy mb-2 group-hover:text-purple transition-colors">
-                    {link.title}
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-4">{link.description}</p>
-                  <span className="inline-flex items-center gap-2 text-sm text-navy font-medium group-hover:gap-3 transition-all">
-                    Learn more
-                    <ArrowRight className="w-4 h-4" />
-                  </span>
+                <Link to={link.href} className="block h-full">
+                  <GlowingCard
+                    className="h-full p-6 bg-white rounded-xl border border-gray-100"
+                    glowColor="rgba(236, 165, 46, 0.4)"
+                  >
+                    <h3 className="font-bold text-navy mb-2 group-hover:text-purple transition-colors">
+                      {link.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-4">{link.description}</p>
+                    <span className="inline-flex items-center gap-2 text-sm text-navy font-medium hover:gap-3 transition-all">
+                      Learn more
+                      <ArrowRight className="w-4 h-4" />
+                    </span>
+                  </GlowingCard>
                 </Link>
               </motion.div>
             ))}
