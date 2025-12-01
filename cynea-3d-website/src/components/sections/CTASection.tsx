@@ -13,7 +13,7 @@ interface CTASectionProps {
     text: string;
     href: string;
   };
-  variant?: 'navy' | 'purple' | 'gradient';
+  variant?: 'navy' | 'purple' | 'gradient' | 'gold' | 'teal';
 }
 
 const CTASection = ({
@@ -33,6 +33,8 @@ const CTASection = ({
     navy: 'bg-navy',
     purple: 'bg-purple',
     gradient: 'bg-gradient-to-r from-navy via-navy-light to-purple',
+    gold: 'bg-gradient-to-r from-gold to-gold/80',
+    teal: 'bg-gradient-to-r from-teal to-teal-dark',
   };
 
   return (
