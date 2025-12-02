@@ -536,7 +536,7 @@ const GovernmentTraining = () => {
         description="Partner with us to prepare your government workforce for the AI-powered future."
         primaryCTA={{ text: 'Start Discussion', href: '/contact' }}
         secondaryCTA={{ text: 'Download Overview', href: '/contact' }}
-        variant="teal"
+        variant="dark"
       />
     </>
   );

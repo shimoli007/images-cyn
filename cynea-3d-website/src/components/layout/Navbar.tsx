@@ -13,14 +13,13 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 10);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setIsMobileMenuOpen(false);
     setActiveDropdown(null);
@@ -33,20 +32,20 @@ const Navbar = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
+        isScrolled
+          ? 'bg-white/80 backdrop-blur-lg border-b border-slate-200/50 py-3'
+          : 'bg-transparent py-5'
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <img
-              src="/images/cynea-logo.png"
-              alt="Cynea AI"
-              className="h-10 w-auto"
-            />
-            <span className={`font-bold text-xl ${isScrolled ? 'text-navy' : 'text-navy'}`}>
-              Cynea AI
+          <Link to="/" className="flex items-center gap-2.5">
+            <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-sm">C</span>
+            </div>
+            <span className="font-semibold text-lg text-slate-900">
+              Cynea
             </span>
           </Link>
 
@@ -61,18 +60,14 @@ const Navbar = () => {
               >
                 {item.children ? (
                   <button
-                    className={`flex items-center gap-1 px-4 py-2 rounded-lg font-medium transition-colors ${
-                      isScrolled
-                        ? 'text-gray-700 hover:text-navy hover:bg-gray-100'
-                        : 'text-gray-700 hover:text-navy hover:bg-white/50'
-                    }`}
+                    className="flex items-center gap-1 px-3 py-2 text-sm text-slate-600 hover:text-slate-900 transition-colors"
                     onClick={() => handleDropdownToggle(item.label)}
                     aria-expanded={activeDropdown === item.label}
                     aria-haspopup="true"
                   >
                     {item.label}
                     <ChevronDown
-                      className={`w-4 h-4 transition-transform ${
+                      className={`w-3.5 h-3.5 transition-transform duration-200 ${
                         activeDropdown === item.label ? 'rotate-180' : ''
                       }`}
                     />
@@ -80,12 +75,10 @@ const Navbar = () => {
                 ) : (
                   <Link
                     to={item.href}
-                    className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                    className={`px-3 py-2 text-sm transition-colors ${
                       location.pathname === item.href
-                        ? 'text-navy bg-gold/20'
-                        : isScrolled
-                        ? 'text-gray-700 hover:text-navy hover:bg-gray-100'
-                        : 'text-gray-700 hover:text-navy hover:bg-white/50'
+                        ? 'text-slate-900 font-medium'
+                        : 'text-slate-600 hover:text-slate-900'
                     }`}
                   >
                     {item.label}
@@ -96,27 +89,25 @@ const Navbar = () => {
                 <AnimatePresence>
                   {item.children && activeDropdown === item.label && (
                     <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden"
+                      initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-lg border border-slate-200/80 overflow-hidden py-1"
                     >
-                      <div className="py-2">
-                        {item.children.map((child) => (
-                          <Link
-                            key={child.href}
-                            to={child.href}
-                            className={`block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-navy transition-colors ${
-                              location.pathname === child.href
-                                ? 'bg-gold/10 text-navy font-medium'
-                                : ''
-                            }`}
-                          >
-                            {child.label}
-                          </Link>
-                        ))}
-                      </div>
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.href}
+                          to={child.href}
+                          className={`block px-4 py-2.5 text-sm transition-colors ${
+                            location.pathname === child.href
+                              ? 'bg-slate-50 text-slate-900 font-medium'
+                              : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                          }`}
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -133,12 +124,12 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100"
+            className="lg:hidden p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isMobileMenuOpen}
           >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
 
@@ -149,16 +140,16 @@ const Navbar = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="lg:hidden mt-4 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden"
+              transition={{ duration: 0.2 }}
+              className="lg:hidden mt-4 bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden"
             >
-              <div className="py-4">
+              <div className="py-2">
                 {navigationItems.map((item) => (
                   <div key={item.label}>
                     {item.children ? (
                       <div>
                         <button
-                          className="w-full flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-gray-50 font-medium"
+                          className="w-full flex items-center justify-between px-4 py-3 text-sm text-slate-700 hover:bg-slate-50"
                           onClick={() => handleDropdownToggle(item.label)}
                           aria-expanded={activeDropdown === item.label}
                         >
@@ -175,13 +166,13 @@ const Navbar = () => {
                               initial={{ opacity: 0, height: 0 }}
                               animate={{ opacity: 1, height: 'auto' }}
                               exit={{ opacity: 0, height: 0 }}
-                              className="bg-gray-50"
+                              className="bg-slate-50"
                             >
                               {item.children.map((child) => (
                                 <Link
                                   key={child.href}
                                   to={child.href}
-                                  className="block px-8 py-2 text-gray-600 hover:text-navy"
+                                  className="block px-8 py-2.5 text-sm text-slate-600 hover:text-slate-900"
                                 >
                                   {child.label}
                                 </Link>
@@ -193,10 +184,10 @@ const Navbar = () => {
                     ) : (
                       <Link
                         to={item.href}
-                        className={`block px-4 py-3 font-medium ${
+                        className={`block px-4 py-3 text-sm ${
                           location.pathname === item.href
-                            ? 'text-navy bg-gold/10'
-                            : 'text-gray-700 hover:bg-gray-50'
+                            ? 'text-slate-900 font-medium bg-slate-50'
+                            : 'text-slate-600 hover:bg-slate-50'
                         }`}
                       >
                         {item.label}
@@ -204,8 +195,8 @@ const Navbar = () => {
                     )}
                   </div>
                 ))}
-                <div className="px-4 pt-4 border-t border-gray-100 mt-2">
-                  <Button href="/contact" variant="primary" fullWidth>
+                <div className="px-4 py-3 border-t border-slate-100 mt-1">
+                  <Button href="/contact" variant="primary" fullWidth size="sm">
                     Get Started
                   </Button>
                 </div>

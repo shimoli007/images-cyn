@@ -374,7 +374,7 @@ const DigitalFinance = () => {
         description="Join businesses already saving thousands on cross-border transactions with stablecoin infrastructure."
         primaryCTA={{ text: 'Start Today', href: '/contact' }}
         secondaryCTA={{ text: 'Calculate Savings', href: '/contact' }}
-        variant="gold"
+        variant="dark"
       />
     </>
   );

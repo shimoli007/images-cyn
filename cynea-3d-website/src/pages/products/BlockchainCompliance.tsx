@@ -316,7 +316,7 @@ const BlockchainCompliance = () => {
         description="Start your EUDR and CBAM compliance journey today. Our team will help you implement traceability in weeks, not months."
         primaryCTA={{ text: 'Get Compliance Assessment', href: '/contact' }}
         secondaryCTA={{ text: 'Download EUDR Guide', href: '/resources' }}
-        variant="navy"
+        variant="dark"
       />
     </>
   );

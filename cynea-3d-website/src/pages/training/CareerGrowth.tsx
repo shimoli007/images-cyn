@@ -490,7 +490,7 @@ const CareerGrowth = () => {
         description="Join thousands of professionals who've already upgraded their skills. Start your AI journey today."
         primaryCTA={{ text: 'Enroll Now', href: '/contact' }}
         secondaryCTA={{ text: 'Download Curriculum', href: '/contact' }}
-        variant="purple"
+        variant="dark"
       />
     </>
   );

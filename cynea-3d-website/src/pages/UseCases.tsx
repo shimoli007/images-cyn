@@ -270,7 +270,7 @@ const UseCases = () => {
         description="Join the SMEs already transforming their businesses with Cynea AI's full-stack infrastructure."
         primaryCTA={{ text: 'Get Started Today', href: '/contact' }}
         secondaryCTA={{ text: 'Explore Solutions', href: '/products/ai-automation' }}
-        variant="purple"
+        variant="dark"
       />
     </>
   );

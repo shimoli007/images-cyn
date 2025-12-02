@@ -385,7 +385,7 @@ const Resources = () => {
         description="We're always looking for guest contributors with expertise in AI, blockchain, and emerging market innovation."
         primaryCTA={{ text: 'Get in Touch', href: '/contact' }}
         secondaryCTA={{ text: 'View Guidelines', href: '#' }}
-        variant="navy"
+        variant="dark"
       />
     </>
   );

@@ -317,7 +317,7 @@ const AIAutomation = () => {
         description="Schedule a free consultation to see how AI agents can transform your operations."
         primaryCTA={{ text: 'Schedule Demo', href: '/contact' }}
         secondaryCTA={{ text: 'View Pricing', href: '/contact' }}
-        variant="purple"
+        variant="dark"
       />
     </>
   );

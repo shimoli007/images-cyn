@@ -1,17 +1,15 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Clock, Send, ArrowRight } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { interestOptions, contactInfo } from '@/data/navigation';
 import Button from '@/components/ui/Button';
-import FloatingParticles from '@/components/effects/FloatingParticles';
-import GlowingCard from '@/components/effects/GlowingCard';
 
 const quickLinks = [
   {
     title: 'Product Demo',
     description: 'Schedule a personalized demo of our platform',
-    href: '/contact',
+    href: '/products/ai-automation',
   },
   {
     title: 'Training Programs',
@@ -19,7 +17,7 @@ const quickLinks = [
     href: '/training/corporate',
   },
   {
-    title: 'Join Talent Hub',
+    title: 'Talent Hub',
     description: 'Apply to our Nairobi talent development program',
     href: '/impact/talent-hub',
   },
@@ -59,13 +57,11 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
     setIsSubmitting(false);
     setSubmitSuccess(true);
 
-    // Reset form after success
     setTimeout(() => {
       setFormData({
         fullName: '',
@@ -83,130 +79,110 @@ const Contact = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-navy to-navy-light text-white relative overflow-hidden">
-        {/* Floating Particles Background */}
-        <FloatingParticles className="opacity-40" particleCount={80} color="#eca52e" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <section className="pt-32 pb-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
+            className="max-w-2xl"
           >
-            <h1 className="text-4xl sm:text-5xl font-bold mb-4">Get in Touch</h1>
-            <p className="text-xl text-gray-200 max-w-2xl">
-              Whether you're an SME looking to transform your business, a government institution building
-              AI capacity, or a talented innovator seeking opportunities—we'd love to hear from you.
+            <h1 className="text-4xl sm:text-5xl font-semibold text-slate-900 leading-tight mb-6">
+              Get in touch
+            </h1>
+            <p className="text-xl text-slate-600 leading-relaxed">
+              Whether you're an SME, government institution, or innovator—we'd love to hear from you.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Contact Form & Info Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-3 gap-12">
+      <section className="py-16 bg-white border-t border-slate-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-5 gap-16">
             {/* Contact Information */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="lg:col-span-1"
+              transition={{ duration: 0.5 }}
+              className="lg:col-span-2"
             >
-              <h2 className="text-2xl font-bold text-navy mb-6">Contact Information</h2>
+              <h2 className="text-lg font-semibold text-slate-900 mb-6">Contact details</h2>
 
               <div className="space-y-6">
-                {/* Email */}
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-navy/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-5 h-5 text-navy" />
-                  </div>
+                  <Mail className="w-5 h-5 text-slate-400 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-navy">Email</p>
+                    <p className="text-sm text-slate-500 mb-1">Email</p>
                     <a
                       href={`mailto:${contactInfo.email}`}
-                      className="text-gray-600 hover:text-purple transition-colors"
+                      className="text-slate-900 hover:text-violet-600 transition-colors"
                     >
                       {contactInfo.email}
                     </a>
                   </div>
                 </div>
 
-                {/* Phone */}
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-navy/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-5 h-5 text-navy" />
-                  </div>
+                  <Phone className="w-5 h-5 text-slate-400 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-navy">Phone</p>
+                    <p className="text-sm text-slate-500 mb-1">Phone</p>
                     <a
                       href={`tel:${contactInfo.phone}`}
-                      className="text-gray-600 hover:text-purple transition-colors"
+                      className="text-slate-900 hover:text-violet-600 transition-colors"
                     >
-                      {contactInfo.phone} (UK)
+                      {contactInfo.phone}
                     </a>
                   </div>
                 </div>
 
-                {/* Location */}
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-navy/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-5 h-5 text-navy" />
-                  </div>
+                  <MapPin className="w-5 h-5 text-slate-400 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-navy">Locations</p>
-                    <p className="text-gray-600">{contactInfo.address}</p>
+                    <p className="text-sm text-slate-500 mb-1">Location</p>
+                    <p className="text-slate-900">{contactInfo.address}</p>
                   </div>
                 </div>
               </div>
 
-              {/* Office Hours */}
-              <div className="mt-8 p-6 bg-gray-50 rounded-xl">
-                <div className="flex items-center gap-2 mb-4">
-                  <Clock className="w-5 h-5 text-navy" />
-                  <h3 className="font-semibold text-navy">Office Hours</h3>
-                </div>
-                <div className="space-y-2 text-sm text-gray-600">
+              <div className="mt-10 pt-8 border-t border-slate-200">
+                <p className="text-sm text-slate-500 mb-4">Office hours</p>
+                <div className="space-y-1 text-sm text-slate-700">
                   <p>{contactInfo.officeHours.weekday}</p>
                   <p>{contactInfo.officeHours.saturday}</p>
-                  <p>{contactInfo.officeHours.sunday}</p>
                 </div>
               </div>
             </motion.div>
 
             {/* Contact Form */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="lg:col-span-2"
+              transition={{ delay: 0.1, duration: 0.5 }}
+              className="lg:col-span-3"
             >
-              <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
-                <h2 className="text-2xl font-bold text-navy mb-6">Send Us a Message</h2>
-
+              <div className="bg-slate-50 rounded-2xl p-8 border border-slate-200">
                 {submitSuccess ? (
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
+                    initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     className="text-center py-12"
                   >
-                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Send className="w-8 h-8 text-green-600" />
+                    <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Send className="w-6 h-6 text-emerald-600" />
                     </div>
-                    <h3 className="text-xl font-bold text-navy mb-2">Message Sent!</h3>
-                    <p className="text-gray-600">
-                      Thank you for reaching out. We'll get back to you within 24-48 hours.
-                    </p>
+                    <h3 className="text-xl font-semibold text-slate-900 mb-2">Message sent</h3>
+                    <p className="text-slate-600">We'll get back to you within 24-48 hours.</p>
                   </motion.div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
-                    {/* Name & Email Row */}
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
-                        <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
-                          Full Name *
+                        <label htmlFor="fullName" className="block text-sm font-medium text-slate-700 mb-2">
+                          Name
                         </label>
                         <input
                           type="text"
@@ -215,13 +191,12 @@ const Contact = () => {
                           value={formData.fullName}
                           onChange={handleInputChange}
                           required
-                          placeholder="John Doe"
-                          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
+                          className="w-full px-4 py-3 bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all text-slate-900"
                         />
                       </div>
                       <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                          Email Address *
+                        <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
+                          Email
                         </label>
                         <input
                           type="email"
@@ -230,16 +205,14 @@ const Contact = () => {
                           value={formData.email}
                           onChange={handleInputChange}
                           required
-                          placeholder="john@example.com"
-                          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
+                          className="w-full px-4 py-3 bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all text-slate-900"
                         />
                       </div>
                     </div>
 
-                    {/* Company */}
                     <div>
-                      <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
-                        Company/Organization
+                      <label htmlFor="company" className="block text-sm font-medium text-slate-700 mb-2">
+                        Company (optional)
                       </label>
                       <input
                         type="text"
@@ -247,15 +220,13 @@ const Contact = () => {
                         name="company"
                         value={formData.company}
                         onChange={handleInputChange}
-                        placeholder="Your Company Name"
-                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all text-slate-900"
                       />
                     </div>
 
-                    {/* Interest Dropdown */}
                     <div>
-                      <label htmlFor="interest" className="block text-sm font-medium text-gray-700 mb-2">
-                        I'm interested in: *
+                      <label htmlFor="interest" className="block text-sm font-medium text-slate-700 mb-2">
+                        I'm interested in
                       </label>
                       <select
                         id="interest"
@@ -263,9 +234,9 @@ const Contact = () => {
                         value={formData.interest}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-gold focus:border-transparent transition-all bg-white"
+                        className="w-full px-4 py-3 bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all text-slate-900"
                       >
-                        <option value="">Select an option...</option>
+                        <option value="">Select an option</option>
                         {interestOptions.map((option) => (
                           <option key={option.value} value={option.value}>
                             {option.label}
@@ -274,10 +245,9 @@ const Contact = () => {
                       </select>
                     </div>
 
-                    {/* Message */}
                     <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                        Message *
+                      <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">
+                        Message
                       </label>
                       <textarea
                         id="message"
@@ -285,16 +255,12 @@ const Contact = () => {
                         value={formData.message}
                         onChange={handleInputChange}
                         required
-                        rows={5}
-                        placeholder="Tell us about your needs or questions..."
-                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-gold focus:border-transparent transition-all resize-none"
+                        rows={4}
+                        className="w-full px-4 py-3 bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all resize-none text-slate-900"
                       />
                     </div>
 
-                    {/* Data Protection & Consent */}
-                    <div className="bg-gray-50 rounded-xl p-6 space-y-4">
-                      <h4 className="font-semibold text-navy">Data Protection & Consent</h4>
-
+                    <div className="space-y-3">
                       <label className="flex items-start gap-3 cursor-pointer">
                         <input
                           type="checkbox"
@@ -302,13 +268,14 @@ const Contact = () => {
                           checked={formData.consentData}
                           onChange={handleInputChange}
                           required
-                          className="mt-1 w-4 h-4 text-gold border-gray-300 rounded focus:ring-gold"
+                          className="mt-1 w-4 h-4 text-violet-600 border-slate-300 rounded focus:ring-violet-500"
                         />
-                        <span className="text-sm text-gray-600">
-                          <strong>I consent to data processing *</strong>
-                          <br />
-                          I agree to Cynea AI processing my personal data according to the Privacy Policy.
-                          My data will be used solely to respond to this inquiry and will be stored securely.
+                        <span className="text-sm text-slate-600">
+                          I consent to Cynea AI processing my data according to the{' '}
+                          <Link to="/privacy" className="text-violet-600 hover:underline">
+                            Privacy Policy
+                          </Link>
+                          .
                         </span>
                       </label>
 
@@ -318,42 +285,23 @@ const Contact = () => {
                           name="consentMarketing"
                           checked={formData.consentMarketing}
                           onChange={handleInputChange}
-                          className="mt-1 w-4 h-4 text-gold border-gray-300 rounded focus:ring-gold"
+                          className="mt-1 w-4 h-4 text-violet-600 border-slate-300 rounded focus:ring-violet-500"
                         />
-                        <span className="text-sm text-gray-600">
-                          <strong>I'd like to receive updates (Optional)</strong>
-                          <br />
-                          I consent to receiving marketing communications, newsletters, and product updates
-                          from Cynea AI. You can unsubscribe at any time.
+                        <span className="text-sm text-slate-600">
+                          I'd like to receive product updates and newsletters.
                         </span>
                       </label>
-
-                      <p className="text-xs text-gray-500">
-                        By submitting this form, you acknowledge that your information will be processed
-                        in accordance with UK GDPR regulations. See our{' '}
-                        <Link to="/privacy" className="text-purple hover:underline">
-                          Privacy Policy
-                        </Link>{' '}
-                        and{' '}
-                        <Link to="/terms" className="text-purple hover:underline">
-                          Terms of Service
-                        </Link>{' '}
-                        for more information.
-                      </p>
                     </div>
 
-                    {/* Submit Button */}
                     <Button
                       type="submit"
                       variant="primary"
                       size="lg"
                       disabled={isSubmitting}
-                      icon={<Send className="w-5 h-5" />}
+                      icon={<Send className="w-4 h-4" />}
                     >
-                      {isSubmitting ? 'Sending...' : 'Send Message'}
+                      {isSubmitting ? 'Sending...' : 'Send message'}
                     </Button>
-
-                    <p className="text-xs text-gray-500">* Required fields</p>
                   </form>
                 )}
               </div>
@@ -363,42 +311,40 @@ const Contact = () => {
       </section>
 
       {/* Quick Links Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 bg-slate-50 border-t border-slate-200">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
+            transition={{ duration: 0.5 }}
+            className="max-w-2xl mb-12"
           >
-            <h2 className="text-3xl font-bold text-navy mb-4">Looking for Something Specific?</h2>
-            <p className="text-gray-600">Quick links to help you find what you need</p>
+            <h2 className="text-2xl font-semibold text-slate-900 mb-4">Looking for something specific?</h2>
+            <p className="text-slate-600">Quick links to help you find what you need.</p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {quickLinks.map((link, index) => (
               <motion.div
                 key={link.title}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
               >
-                <Link to={link.href} className="block h-full">
-                  <GlowingCard
-                    className="h-full p-6 bg-white rounded-xl border border-gray-100"
-                    glowColor="rgba(236, 165, 46, 0.4)"
-                  >
-                    <h3 className="font-bold text-navy mb-2 group-hover:text-purple transition-colors">
-                      {link.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 mb-4">{link.description}</p>
-                    <span className="inline-flex items-center gap-2 text-sm text-navy font-medium hover:gap-3 transition-all">
-                      Learn more
-                      <ArrowRight className="w-4 h-4" />
-                    </span>
-                  </GlowingCard>
+                <Link
+                  to={link.href}
+                  className="block h-full p-6 bg-white rounded-xl border border-slate-200 hover:border-slate-300 hover:shadow-md transition-all group"
+                >
+                  <h3 className="font-medium text-slate-900 mb-2 group-hover:text-violet-600 transition-colors">
+                    {link.title}
+                  </h3>
+                  <p className="text-sm text-slate-600 mb-4">{link.description}</p>
+                  <span className="inline-flex items-center gap-2 text-sm text-slate-500 group-hover:text-violet-600 group-hover:gap-3 transition-all">
+                    Learn more
+                    <ArrowRight className="w-4 h-4" />
+                  </span>
                 </Link>
               </motion.div>
             ))}

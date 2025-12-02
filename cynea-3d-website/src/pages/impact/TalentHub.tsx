@@ -443,7 +443,7 @@ const TalentHub = () => {
         description="Whether you're looking to build AI skills or hire AI-certified talent, we've got you covered."
         primaryCTA={{ text: 'Join as Talent', href: '/contact' }}
         secondaryCTA={{ text: 'Hire Talent', href: '/contact' }}
-        variant="purple"
+        variant="dark"
       />
     </>
   );

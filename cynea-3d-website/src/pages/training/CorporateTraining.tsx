@@ -416,7 +416,7 @@ const CorporateTraining = () => {
         description="Get a custom proposal tailored to your organization's needs and goals."
         primaryCTA={{ text: 'Request Proposal', href: '/contact' }}
         secondaryCTA={{ text: 'Download Brochure', href: '/contact' }}
-        variant="navy"
+        variant="dark"
       />
     </>
   );

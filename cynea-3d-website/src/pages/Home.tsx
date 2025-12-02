@@ -8,27 +8,17 @@ import CTASection from '@/components/sections/CTASection';
 const Home = () => {
   return (
     <>
-      {/* Hero Section with 3D Globe */}
       <HeroSection />
-
-      {/* Complete Infrastructure Stack */}
-      <InfrastructureSection />
-
-      {/* Why Cynea AI is Different */}
-      <WhyDifferentSection />
-
-      {/* Trusted by Leaders */}
       <TrustedBySection />
-
-      {/* Choose Your Path Forward */}
+      <InfrastructureSection />
+      <WhyDifferentSection />
       <PathForwardSection />
-
-      {/* Call to Action */}
       <CTASection
-        title="Ready to Transform Your Business?"
-        description="Join the SMEs, governments, and enterprises already building the future of borderless trade with Cynea AI."
-        primaryCTA={{ text: 'Schedule a Demo', href: '/contact' }}
-        secondaryCTA={{ text: 'Explore Resources', href: '/resources' }}
+        title="Ready to get started?"
+        description="Join SMEs and governments already transforming with Cynea AI."
+        primaryCTA={{ text: 'Get Started', href: '/contact' }}
+        secondaryCTA={{ text: 'Learn More', href: '/about' }}
+        variant="light"
       />
     </>
   );

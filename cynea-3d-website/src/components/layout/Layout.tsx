@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import ScrollProgress from '@/components/effects/ScrollProgress';
 
 interface LayoutProps {
   children: ReactNode;
@@ -10,9 +9,6 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Scroll Progress Indicator */}
-      <ScrollProgress />
-
       {/* Skip to main content link for accessibility */}
       <a href="#main-content" className="skip-link">
         Skip to main content

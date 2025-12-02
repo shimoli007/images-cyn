@@ -473,7 +473,7 @@ const DataAnalytics = () => {
         description="Start collecting verified business data today. Free to begin, valuable to scale."
         primaryCTA={{ text: 'Start Free', href: '/contact' }}
         secondaryCTA={{ text: 'See Demo', href: '/contact' }}
-        variant="purple"
+        variant="dark"
       />
     </>
   );

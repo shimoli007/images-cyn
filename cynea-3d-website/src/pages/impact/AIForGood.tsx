@@ -462,7 +462,7 @@ const AIForGood = () => {
         description="Help us ensure the AI revolution benefits everyone, not just the privileged few."
         primaryCTA={{ text: 'Partner With Us', href: '/contact' }}
         secondaryCTA={{ text: 'Learn More', href: '/about' }}
-        variant="teal"
+        variant="dark"
       />
     </>
   );
